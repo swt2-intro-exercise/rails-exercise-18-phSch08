@@ -10,3 +10,5 @@ before_install:
  - python ./travis/try_issues.py
 after_success:
  - ./travis/travis_commands
+rvm:
+ - 2.5.0
