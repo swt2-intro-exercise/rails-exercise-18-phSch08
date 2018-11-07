@@ -15,4 +15,10 @@ describe Author, type: :model do
 
   end
 
+  it "should not validate without last name" do
+    false_author = Author.new(first_name: 'Alan', homepage: 'http://wikipedia.org/Alan_Turing')
+
+    expect(false_author).to_not be_valid
+  end
+
 end
