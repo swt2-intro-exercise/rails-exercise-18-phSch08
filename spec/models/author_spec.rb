@@ -21,4 +21,8 @@ describe Author, type: :model do
     expect(false_author).to_not be_valid
   end
 
+  it "shoulde be deletable" do#
+    
+  end
+
 end
