@@ -25,7 +25,6 @@ describe 'Author edit page', type: :feature do
     expect(page).to have_field('author[homepage]')
   end
 
-    puts @author.first_name.to_yaml
   it "should save changes" do
     visit edit_author_path(@author)
 
@@ -34,6 +33,8 @@ describe 'Author edit page', type: :feature do
     page.fill_in 'author[homepage]', with: 'http://wikipedia.org/Alan_Turing'
 
     find('input[type="submit"]').click
+
+    expect(Author.find(@author.id).first_name).to eq('Alan Mathison')
   end
 
 end
