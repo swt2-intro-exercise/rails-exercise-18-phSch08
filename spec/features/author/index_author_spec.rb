@@ -29,6 +29,10 @@ describe 'Author index page', type: :feature do
   end
 
   it 'should have a link to edit the author' do
-    expect(page). to have_link 'Edit', href: edit_author_path(@author)
+    expect(page).to have_link 'Edit', href: edit_author_path(@author)
+  end
+
+  it 'should have a link to delete the author' do
+    expect(page).to have_link 'Delete'
   end
 end
