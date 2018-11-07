@@ -17,7 +17,7 @@ describe 'Author index page', type: :feature do
   end
 
   it 'should list link to the authors homepage' do
-    expect(page).to have_link 'Homepage', href: 'http://wikipedia.org/Alan_Turing'
+    expect(page).to have_link 'http://wikipedia.de/alan_turing', href: 'http://wikipedia.de/alan_turing'
   end
 
   it 'should list link to author' do
