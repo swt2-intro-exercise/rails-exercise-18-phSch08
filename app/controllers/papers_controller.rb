@@ -52,6 +52,6 @@ class PapersController < ApplicationController
   private
     # Only allow a trusted parameter "white list" through.
     def paper_params
-      params.require(:paper).permit(:title, :venue, :year)
+      params.require(:paper).permit(:title, :venue, :year, :authors)
     end
 end
