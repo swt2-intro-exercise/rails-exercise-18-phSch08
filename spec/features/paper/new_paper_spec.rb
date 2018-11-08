@@ -57,4 +57,16 @@ describe "New paper page", type: :feature do
 
     expect(page).to have_text('error')
   end
+
+  it "should show validation errors when year is not an integer" do
+    visit new_paper_path
+
+    page.fill_in 'paper[title]', with: 'dumb things'
+    page.fill_in 'paper[venue]', with: 'dumb city'
+    page.fill_in 'paper[year]', with: 'milchreis'
+
+    find('input[type="submit"]').click
+
+    expect(page).to have_text('error')
+  end
 end
