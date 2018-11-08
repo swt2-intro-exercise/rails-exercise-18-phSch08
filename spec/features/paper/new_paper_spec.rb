@@ -25,10 +25,21 @@ describe "New paper page", type: :feature do
     find('input[type="submit"]').click
   end
 
-  it "should show validation errors" do
+  it "should show validation errors without title" do
     visit new_paper_path
 
     page.fill_in 'paper[venue]', with: 'dumb city'
+    page.fill_in 'paper[year]', with: '2015'
+
+    find('input[type="submit"]').click
+
+    expect(page).to have_text('error')
+  end
+
+  it "should show validation errors without venue" do
+    visit new_paper_path
+
+    page.fill_in 'paper[title]', with: 'dumb things'
     page.fill_in 'paper[year]', with: '2015'
 
     find('input[type="submit"]').click
