@@ -1,13 +1,18 @@
 class PapersController < ApplicationController
 
+  before_action :set_paper, only: [:show, :edit, :update, :destroy]
+
   # GET /papers
   def index
-    @papers = Paper.all
+    if params[:year].present?
+      @papers = Paper.published_in_year params[:year]
+    else
+      @papers = Paper.all
+    end
   end
 
   # GET /papers/1
   def show
-    @paper = Paper.find(params[:id])
   end
 
   # GET /papers/new
@@ -17,7 +22,6 @@ class PapersController < ApplicationController
 
   # GET /papers/1/edit
   def edit
-    @paper = Paper.find(params[:id])
   end
 
   # POST /papers
@@ -32,8 +36,6 @@ class PapersController < ApplicationController
 
   # PATCH/PUT /papers/1
   def update
-    @paper = Paper.find(params[:id])
-
     if @paper.update(paper_params)
       redirect_to @paper
     else
@@ -43,15 +45,19 @@ class PapersController < ApplicationController
 
   # DELETE /papers/1
   def destroy
-    @paper = Paper.find(params[:id])
     @paper.destroy
 
     redirect_to papers_path
   end
 
   private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_paper
+      @paper = Paper.find(params[:id])
+    end
+
     # Only allow a trusted parameter "white list" through.
     def paper_params
-      params.require(:paper).permit(:title, :venue, :year, :author_id)
+      params.require(:paper).permit(:title, :venue, :year, author_ids: [])
     end
 end
