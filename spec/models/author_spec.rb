@@ -21,6 +21,10 @@ describe Author, type: :model do
     expect(false_author).to_not be_valid
   end
 
+  it "should have and belong to many papers" do
+    expect(author.papers).to be_empty
+  end
+
   it "shoulde be deletable" do#
     
   end
