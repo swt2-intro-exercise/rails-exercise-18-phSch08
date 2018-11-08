@@ -46,4 +46,15 @@ describe "New paper page", type: :feature do
 
     expect(page).to have_text('error')
   end
+
+  it "should show validation errors without year" do
+    visit new_paper_path
+
+    page.fill_in 'paper[title]', with: 'dumb things'
+    page.fill_in 'paper[venue]', with: 'dumb city'
+
+    find('input[type="submit"]').click
+
+    expect(page).to have_text('error')
+  end
 end
